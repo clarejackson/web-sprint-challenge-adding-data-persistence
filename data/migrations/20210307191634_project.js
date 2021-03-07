@@ -1,18 +1,18 @@
-const { Knex } = require("knex");
+// const { Knex } = require("knex");
 
 exports.up = async function(knex) {
-  await Knex.schema.createTable('projects', (table) => {
+  await knex.schema.createTable('projects', (table) => {
     table.increments("project_id")
     table.text("project_name").notNull()
     table.text("project_description")
     table.integer("project_completed").defaultTo(0)
   })
-  await Knex.schema.createTable('resources', (table) => {
+  await knex.schema.createTable('resources', (table) => {
     table.increments("resource_id")
     table.text("resource_name").notNull().unique()
     table.text("resource_description")
   })
-  await Knex.schema.createTable('tasks', (table) => {
+  await knex.schema.createTable('tasks', (table) => {
     table.increments("task_id")
     table.text("task_description").notNull()
     table.text("task_notes")
@@ -25,7 +25,7 @@ exports.up = async function(knex) {
         .onDelete("CASCADE")
         .onUpdate("CASCADE")
   })
-  await Knex.schema.createTable('project_resources', (table) => {
+  await knex.schema.createTable('project_resources', (table) => {
     table
         .integer("project_id")
         .notNull()

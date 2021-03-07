@@ -4,12 +4,15 @@ const db = require('../../data/dbConfig');
 //  [GET] /api/resources
 
 // Example of response body: [{"resource_id":1,"resource_name":"foo","resource_description":null}]
-exports.getResources = () => {
+const getResources = () => {
   return db('resources')
       .select("*")
 }
 
-exports.addResource = async (resource) => {
+// [POST] /api/resources
+
+// Example of response body: {"resource_id":1,"resource_name":"foo","resource_description":null}
+const addResource = async (resource) => {
   const [id] = await db('resources')
     .insert({
       resource_name: resource.resource_name,
@@ -21,8 +24,8 @@ exports.addResource = async (resource) => {
         .first()
 }
 
+module.exports = {
+  getResources,
+  addResource,
+}
 
-
-// [POST] /api/resources
-
-// Example of response body: {"resource_id":1,"resource_name":"foo","resource_description":null}

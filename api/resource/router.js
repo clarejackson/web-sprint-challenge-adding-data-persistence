@@ -4,9 +4,7 @@ const model = require('./model');
 
 const router = express.Router()
 
-//  [GET] /api/resources
 
-// Example of response body: [{"resource_id":1,"resource_name":"foo","resource_description":null}]
 router.get('/', async (req, res, next) => {
   try {
     const resources = await model.getResources()
@@ -24,13 +22,6 @@ router.post('/', async (req, res, next) => {
     next(err)
   }
 })
-
-
-
-// [POST] /api/resources
-
-// Example of response body: {"resource_id":1,"resource_name":"foo","resource_description":null}
-
 
 
 

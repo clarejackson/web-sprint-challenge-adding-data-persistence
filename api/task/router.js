@@ -2,6 +2,8 @@
 const express = require('express');
 const model = require('./model');
 
+const router = express.Router();
+
 // [POST] /api/tasks
 
 // Even though task_completed is stored as an integer, the API uses booleans when interacting with the client

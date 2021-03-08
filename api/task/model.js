@@ -25,7 +25,7 @@ exports.getTasks = async () => {
 
 
 const result = (boolean) => {
-  if (boolean === true) {
+  if (boolean === true || boolean === 1 || boolean === "1") {
     return 1
   } else {
     return 0

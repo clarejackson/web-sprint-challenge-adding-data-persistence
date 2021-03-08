@@ -21,7 +21,7 @@ router.get('/', async (req, res, next) => {
 // not working
 router.post('/', async (req, res, next) => {
   try {
-    const projects = await model.addProject(res.body)
+    const projects = await model.addProject(req.body)
     res.status(201).json(projects)
   } catch (err) {
     next(err)

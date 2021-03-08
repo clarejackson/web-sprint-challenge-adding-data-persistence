@@ -40,7 +40,7 @@ exports.addProject = async (project) => {
       .select("*")
       .where("project_id", id)
       .first()
-
+    
       return projects.map(project => {
       if (project.project_completed === 1) {
         project.project_completed = true

@@ -37,11 +37,13 @@ const result = (boolean) => {
 }
 
 exports.addTask = async (task) => {
+  console.log(task)
   const [id] = await db('tasks')
     .insert({
       task_description: task.task_description,
       task_notes: task.task_notes,
-      task_completed: result(task.task_completed)
+      task_completed: result(task.task_completed),
+      project_id: task.project_id
     })
 
   let tasks = await db('tasks')
@@ -49,13 +51,12 @@ exports.addTask = async (task) => {
       .where("task_id", id)
       .first()
 
-      return tasks.map(task => {
-      if (task.task_completed === 1) {
-        task.task_completed = true
+      if (tasks.task_completed === 0 || null) {
+        tasks.task_completed = false
       } else {
-        task.task_completed = false
+        tasks.task_completed = true
       }
       return tasks
-    })
+    
       
 }

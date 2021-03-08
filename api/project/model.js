@@ -41,13 +41,11 @@ exports.addProject = async (project) => {
       .where("project_id", id)
       .first()
     
-      return projects.map(project => {
-      if (project.project_completed === 1) {
-        project.project_completed = true
+      if (projects.project_completed === 1) {
+        projects.project_completed = true
       } else {
-        project.project_completed = false
+        projects.project_completed = false
       }
       return projects
-    })
       
 }
